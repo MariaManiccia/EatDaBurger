@@ -22,7 +22,7 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 // router
-let router = require('./controllers/burgers_controller.js');
+let router = require('./controllers/burgerController.js');
 app.use('/', router);
 
 
