@@ -1,33 +1,36 @@
-// Main JS file
+/* eslint-disable linebreak-style */
+/* eslint-disable no-console */
 
-// grabbing express
-const express = require("express");
+// Grabbing express
+const express = require('express');
 
-// opening the port
-const PORT = process.env.PORT || 3030;
+// Opening the port
+const PORT = process.env.PORT || 80;
 
-// calling express
+// Calling express
 const app = express();
 
-// giving the app direction
-app.use(express.static(__dirname + "/public"));
+// Setting the app direction
+app.use(express.static(`${__dirname}/public`));
 
-// break apart into JSON
+// Break apart into JSON
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// express-handlebars
+// Grabbing express-handlebars
 const exphbs = require('express-handlebars');
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+
+// Setting the layout
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
-// router
-let router = require('./controllers/burgerController.js');
+// Grabbing the router
+const router = require('./controllers/burgerController.js');
+// Setting the route to the controller
 app.use('/', router);
 
 
-// communicate connection
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
+// Check the port
+app.listen(PORT, () => {
+  console.log(`App listening on PORT ${PORT}`);
 });
-

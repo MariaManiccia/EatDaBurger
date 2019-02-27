@@ -1,37 +1,43 @@
+/* eslint-disable linebreak-style */
 
-var express = require('express');
-var router = express.Router();
-var burger = require('../models/burger.js');
+// Grabbing express
+const express = require('express');
+
+// Calling the router
+const router = express.Router();
+// Calling the burger file
+const burger = require('../models/burger.js');
 
 
-// setting up the routes
-router.get('/', function (req, res) {
+// Communicating with the DB
+// Default page of Index
+router.get('/', (req, res) => {
   res.redirect('/index');
 });
 
-// the index page
-router.get('/index', function (req, res) {
-  burger.selectAll(function (data) {
-    
-    var burgerObject = { burgers: data };
+// Index
+router.get('/index', (req, res) => {
+  burger.selectAll((data) => {
+    // Grab and render the burgers
+    const burgerObject = { burgers: data };
 
     res.render('index', burgerObject);
   });
 });
 
-// CREATE
-router.post('/burger/create', function (req, res) {
-  burger.insertOne(req.body.burger_name, function () {
+// When creating a new burger
+router.post('/burger/create', (req, res) => {
+  burger.insertOne(req.body.burger_name, () => {
     res.redirect('/index');
   });
 });
 
-// UPDATE
-router.post('/burger/eat/:id', function (req, res) {
-  burger.updateOne(req.params.id, function () {
+// Updating whether the burger had been ate
+router.post('/burger/eat/:id', (req, res) => {
+  burger.updateOne(req.params.id, () => {
     res.redirect('/index');
   });
 });
 
-
+// Export
 module.exports = router;
