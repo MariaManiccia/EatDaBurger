@@ -1,29 +1,34 @@
-// grabbins mysql
-const mysql = require("mysql");
+/* eslint-disable linebreak-style */
+/* eslint-disable no-console */
+/* eslint-disable linebreak-style */
 
-// setting up the connection
+// Grabbing MySQL
+const mysql = require('mysql');
+
+// Setting up the connection
 let connection;
 
-// connecting to Jaws DB
+// Connecting to Jaws DB
 if (process.env.JAWSDB_URL) {
-	connection = mysql.createConnection(process.env.JAWSDB_URL);
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
-	connection = mysql.createConnection( {
-		host: 'localhost',
-		user: 'root',
-		password: 'Billyjoel1',
-		database: 'burgers_db'
-	});
-};
+  // Or else connect to my personal DB
+  connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'Billyjoel1',
+    database: 'burgers_db',
+  });
+}
 
-// communicate connection
-connection.connect(function(err) {
+// Check connection
+connection.connect((err) => {
   if (err) {
-    console.error("error connecting: " + err.stack);
+    console.error(`error connecting: ${err.stack}`);
     return;
   }
-  console.log("connected as id " + connection.threadId);
+  console.log(`connected as id ${connection.threadId}`);
 });
 
-
+// Export
 module.exports = connection;
