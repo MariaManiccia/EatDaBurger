@@ -1,19 +1,18 @@
  <div class="row">
   <center>
-
-    <!-- left side -->
+    <!-- Burgers Ready to Eat -->
     <div class="col-md-4">
       <h3 class="submitFont">Burgers Available</h3>
-      <div id="burgersAvailable">
+        <div id="burgersAvailable">
 
-        <!-- adding the burger -->
+        <!-- Showing the burgers -->
         {{#each burgers}}
           {{#unless devoured}}
           <form action="burger/eat/{{id}}" method="POST">
             <div class="input-group">
               <li class="form-control">{{id}}. {{burger_name}}</li>
                 <span class="input-group-btn">
-                  <button class="btn btn-success devour-button" type="submit">Devour It!</button>
+                  <button class="btn btn-warning devour-button" type="submit">Devour It!</button>
                 </span>
             </div>
           </form>
